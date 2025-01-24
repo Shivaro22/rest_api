@@ -68,10 +68,11 @@ app.route("/api/users/:id")
      const user = await User.findById(req.params.id);
     if(!user) return res.status(404).json({ error : 'user not found'});;
     return res.json(user);
-}).patch((req,res)=> {
-
-}).delete((req,res)=>{
-
+}).patch(async (req,res)=> {
+    await User.findByIdAndUpdate(req.params.id,{lastName:"KiKi"});
+})
+.delete(async (req,res)=>{
+    await User.findByIdAndDelete(req.params.id);
 })
 
 
